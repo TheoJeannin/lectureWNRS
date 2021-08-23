@@ -1,10 +1,13 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class main {
     public static void main(String[] args) {
 
     }
 
-    public String pickCard(int deck, int level){
-        String str = "";
+    public String nameFile(int deck, int level){
         String fileName ="";
         switch (deck){
             default : //main
@@ -29,7 +32,23 @@ public class main {
         if(deck != 3){
             fileName+="Level"+String.valueOf(level);
         }
+        fileName+=".txt";
+        return fileName;
+    }
 
-        return str;
+    public String readFile(String fileName){
+        try {
+            File myObj = new File("filename.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return null;
     }
 }
